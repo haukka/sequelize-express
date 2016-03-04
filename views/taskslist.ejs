@@ -1,0 +1,21 @@
+<% layout('./layout') %>
+
+<body>
+<div class="container">
+<h1>Liste des taches pour l'utilisateur <%= user.username %></h1>
+<h2>Creer une nouvelle tache
+  <form action="/api/<%= user.id%>/tasks/create" method="post">
+    <input type="text" class="form-control" name="title"/>
+    <input class="btn btn-primary" type="submit"/>
+  </form>
+  <h2>Tasks</h2>
+  <ul>
+  <% user.Tasks.forEach(function(task) { %>
+    <li>
+     <%= task.title %> <a href="/api/<%= user.id %>/tasks/<%= task.id %>/destroy">Destroy</a>
+    </li>
+<% }); %>
+  </ul>
+</h2>
+</div>
+</body>

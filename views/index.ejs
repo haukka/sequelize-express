@@ -1,0 +1,22 @@
+<% layout('./layout') %>
+
+<body>
+<div class="container">
+<h1>Liste des utilisateurs</h1>
+<p>Test de la bdd sequelize</p>
+<h2>Creer un nouvel utilisateur
+  <form action="/api/users" method="post">
+    <input type="text" class="form-control" name="name"/>
+    <input class="btn btn-primary" type="submit"/>
+  </form>
+  <h2>Users</h2>
+  <ul>
+  <% users.forEach(function(user) { %>
+    <li>
+     <a href="/api/<%=user.id%>"><%= user.username %></a> <a href="/api/<%= user.id %>/destroy"><span class="glyphicon glyphicon-remove" style="color:red;"></span></a>
+    </li>
+<% }); %>
+  </ul>
+</h2>
+</div>
+</body>
