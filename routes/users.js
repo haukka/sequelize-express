@@ -8,6 +8,8 @@ router.post('/users', function(req, res) {
     username: req.body.name
   }).then(function() {
     res.redirect('/');
+  }).catch(function(err){
+      res.send(err);
   });
 });
 
@@ -18,12 +20,16 @@ router.get('/:userId/destroy', function(req, res) {
     }
   }).then(function() {
     res.redirect('/');
+  }).catch(function(err){
+      res.send(err);
   });
 });
 
 router.get('/:userId', function(req, res) {
     models.User.findOne({where: {id: req.params.userId}, include: [models.Task]}).then(function(user) {
 	res.render('taskslist', {user: user});
+    }).catch(function(err){
+	res.send(err);
     });
 });
 
@@ -33,6 +39,8 @@ router.post('/:userId/tasks/create', function (req, res) {
     UserId: req.params.userId
   }).then(function() {
     res.redirect('/api/'+ req.params.userId);
+  }).catch(function(err){
+      res.send(err);
   });
 });
 
@@ -43,6 +51,8 @@ router.get('/:userId/tasks/:taskId/destroy', function (req, res) {
     }
   }).then(function() {
     res.redirect('/api/'+req.params.userId);
+  }).catch(function(err){
+      res.send(err);
   });
 });
 

@@ -7,7 +7,9 @@ router.get('/', function(req, res, next) {
 	include: [models.Task]
     }).then(function(users) {
 	res.render('index', {title: 'express', users: users});
-    });
+    }).catch(function(err){
+      res.send(err);
+  });
 });
 
 module.exports = router;
